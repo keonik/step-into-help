@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 #if DEBUG
 builder.WebHost.UseStaticWebAssets();
+builder.WebHost.UseUrls("http://0.0.0.0:5000");
 #endif
 
 builder.Services.AddControllers();
