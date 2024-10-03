@@ -49,3 +49,9 @@ I had this volunteer opportunity with Homefull and I also had a backlog of techn
 - Utilities/: Helper classes and utility functions.
 
 [Task Board](https://www.notion.so/Step-Into-Help-1142a239c46c8040897cd46a22e24681)
+
+## Running the app
+
+1. Clone the repository
+2. Run `docker compose up --build sqlserver -d`
+3. Apply migrations `docker-compose exec web dotnet ef database update`
