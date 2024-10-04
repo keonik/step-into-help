@@ -18,9 +18,10 @@ RUN dotnet restore "StepIntoHelp.csproj"
 COPY . .
 RUN dotnet build "StepIntoHelp.csproj" -c Release -o /app/build
 FROM build AS publish
-RUN dotnet publish "StepIntoHelp.csproj" --use-current-runtime --self-contained false -o /app/publish
+# RUN dotnet publish "StepIntoHelp.csproj" --use-current-runtime --self-contained false -o /app/publish
+RUN dotnet publish "StepIntoHelp.csproj" -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=node-build /app/client/dist /app/wwwroot
+COPY --from=node-build /app/client/dist /wwwroot
 ENTRYPOINT ["dotnet", "StepIntoHelp.dll"]

@@ -26,11 +26,11 @@ services:
       - ASPNETCORE_URLS="https://+;http://+"
       - ASPNETCORE_HTTPS_PORTS=${HTTPS_PORT}
       - ASPNETCORE_HTTP_PORTS=${HTTP_PORT}
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=${CERT_PATH}
+      # - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
+      # - ASPNETCORE_Kestrel__Certificates__Default__Path=${CERT_PATH}
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=StepIntoHelp;User Id=sa;Password=${SQL_PASSWORD};TrustServerCertificate=True;
-    volumes:
-      - ${CERT_PATH}:/https:ro
+    # volumes:
+    #   - ${CERT_PATH}:/https:ro
     restart: unless-stopped
 
 volumes:
