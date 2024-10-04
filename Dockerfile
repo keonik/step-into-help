@@ -18,8 +18,7 @@ RUN dotnet restore "StepIntoHelp.csproj"
 COPY . .
 RUN dotnet build "StepIntoHelp.csproj" -c Release -o /app/build
 FROM build AS publish
-# RUN dotnet publish "StepIntoHelp.csproj" -c Release -o /app/publish
-RUN dotnet publish --use-current-runtime --self-contained false -o /app/publish
+RUN dotnet publish "StepIntoHelp.csproj" --use-current-runtime --self-contained false -o /app/publish
 FROM cgr.dev/chainguard/dotnet-runtime:latest AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
