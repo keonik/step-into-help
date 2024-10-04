@@ -1,14 +1,16 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
-COPY ["StepIntoHelp.csproj", "./"]
-RUN dotnet restore "StepIntoHelp.csproj"
-COPY . .
-RUN dotnet build "StepIntoHelp.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "StepIntoHelp.csproj" -c Release -o /app/publish
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
-COPY --from=publish /app/publish .
+
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "StepIntoHelp.dll"]
