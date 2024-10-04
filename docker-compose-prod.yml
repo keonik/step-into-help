@@ -23,7 +23,6 @@ services:
       - sqlserver
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS="https://+;http://+"
       - ASPNETCORE_HTTPS_PORTS=${HTTPS_PORT}
       - ASPNETCORE_HTTP_PORTS=${HTTP_PORT}
       # - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
