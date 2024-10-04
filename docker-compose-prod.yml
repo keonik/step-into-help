@@ -17,15 +17,15 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:80"
-      - "8001:443"
+      - "${HTTP_PORT}:80"
+      - "${HTTPS_PORT}:443"
     depends_on:
       - sqlserver
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS="https://+;http://+"
-      - ASPNETCORE_HTTPS_PORTS=8001
-      - ASPNETCORE_HTTP_PORTS=8000
+      - ASPNETCORE_HTTPS_PORTS=${HTTPS_PORT}
+      - ASPNETCORE_HTTP_PORTS=${HTTP_PORT}
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=StepIntoHelp;User Id=sa;Password=${SQL_PASSWORD};TrustServerCertificate=True;
