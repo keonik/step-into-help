@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -24,5 +25,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <!-- Add this line -->
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\**" />
   </ItemGroup>
 </Project>

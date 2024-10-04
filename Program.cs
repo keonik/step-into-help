@@ -24,6 +24,18 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    // Add this block for development
+    app.UseSpa(spa =>
+    {
+        spa.Options.SourcePath = "client";
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:5173"); // Default Vite dev server port
+    });
+}
+else
+{
+    app.UseStaticFiles();
+    app.MapFallbackToFile("index.html");
 }
 
 app.UseHttpsRedirection();
