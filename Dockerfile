@@ -1,5 +1,7 @@
-FROM cgr.dev/chainguard/node AS base
+FROM node:20-alpine AS base
 USER root
+ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /usr/sbin/bin:$PATH
 WORKDIR /app
 COPY . /app
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml\* ./
@@ -13,10 +15,12 @@ RUN \
  fi
 
 # Create an optimised runner image
-FROM base AS runner
-USER root
+FROM node:20-alpine AS runner
+USER node
+ENV PATH /app/node_modules/.bin:$PATH
+
 WORKDIR /app
-COPY --from=base /app/.output .
+COPY --from=base --chown=node:node /app/.output .output
 EXPOSE 3000
 ENV PORT 3000
 CMD ["node", ".output/server/index.mjs"]
