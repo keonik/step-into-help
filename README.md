@@ -33,25 +33,9 @@ It all starts with you. Stepping up and offering to help. So please, share this 
 
 ## Developer Story
 
-I had this volunteer opportunity with Homefull and I also had a backlog of technology I've wanted to refamiliarize or learn from scratch. It's hard for me to learn something new without applying it to a real world problem/ use case. So here we are. The stack I chose is a more stable one with .Net and SQLServer. I plan to make that my new piece of tech, despite building with it in the past (5 years ago). I'm sticking with React on the frontend because its something I know way too much about and its still the standard from my vantage point. Yes its simple enough to do a Next.js app, yes I could use other easier and simpler backend frameworks, but in order for me to get the full spectrum of tech, I need to do more than just Go and Node.js. Lets get after it, I'm excited to see where this goes.
-
-## Folder Structure
-
-- Controllers/: Contains API controllers that define endpoints and handle HTTP requests.
-- Models/: Holds domain models or entities that represent the core business objects.
-- Data/: Includes database context and any data access related classes.
-- Services/: Contains business logic and operations that controllers can use.
-  Repositories/: Implements the repository pattern for data access (if used).
-- DTOs/ (Data Transfer Objects): Defines objects used for data transfer between layers, often used to shape API responses.
-- Configurations/: Holds configuration classes, such as AutoMapper profiles.
-- Middleware/: Custom middleware components, like error handling or request/response modification.
-- Extensions/: Extension methods, often used for service configuration in Program.cs.
-- Utilities/: Helper classes and utility functions.
-
-[Task Board](https://www.notion.so/Step-Into-Help-1142a239c46c8040897cd46a22e24681)
+I had this volunteer opportunity with Homefull and I also had a backlog of technology I've wanted to refamiliarize or learn from scratch. It's hard for me to learn something new without applying it to a real world problem/ use case. So here we are. I'm going to pursue an MVP with the new [Tanstack Start](https://tanstack.com/start/latest) stack. Ideally if this goes somewhere or if I want more reps I rewrite api and database interactions in Golang but monolithic setup will keep me moving fast for the time being.
 
 ## Running the app
 
 1. Clone the repository
-2. Run `docker compose up --build sqlserver -d`
-3. Apply migrations `docker-compose exec web dotnet ef database update`
+2. Run `docker compose up`
