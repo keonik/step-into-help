@@ -2,6 +2,8 @@
 
 Empowering you to make the first step in helping those in need.
 
+[https://stepintohelp.jfay.dev](https://stepintohelp.jfay.dev)
+
 ## What is Step Into Help?
 
 Step Into Help is a concept that came about from a conversation with [Homefull](https://www.homefull.org/). I did a volunteer opportunity with them and was struck by the need and the good that can come from a small action. We made care packages from donations from work, and the combination of building care packages and hearing the stories of how these make a difference was powerful to me.
@@ -38,4 +40,6 @@ I had this volunteer opportunity with Homefull and I also had a backlog of techn
 ## Running the app
 
 1. Clone the repository
-2. Run `docker compose up`
+2. Run `npm i`
+3. Run `npm run dev`
+4. Party
