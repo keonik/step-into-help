@@ -5,3 +5,4 @@ build/
 count.txt
 .vercel/
 .output/
+.vinxi/
