@@ -1,12 +1,22 @@
-FROM node:lts-alpine
+FROM cgr.dev/chainguard/node AS base
+USER root
 WORKDIR /app
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
-COPY package*.json ./
-RUN pnpm install
-COPY . .
-RUN pnpm run build
-ENV NODE_ENV=production
-CMD ["node", ".output/server/index.mjs"]
+COPY . /app
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml\* ./
+RUN npm i --frozen-lockfile
+
+RUN \
+ if [ -f yarn.lock ]; then yarn build; \
+ elif [ -f package-lock.json ]; then npm run build; \
+ elif [ -f pnpm-lock.yaml ]; then pnpm run build; \
+ else echo "Lockfile not found." && exit 1; \
+ fi
+
+# Create an optimised runner image
+FROM base AS runner
+USER root
+WORKDIR /app
+COPY --from=base /app/.output .
 EXPOSE 3000
+ENV PORT 3000
+CMD ["node", ".output/server/index.mjs"]
